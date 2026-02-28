@@ -1,63 +1,72 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" />
-<title>NUTRI TRACK</title>
-<style>
-  :root {
-    --bg: #f0f2f5; --card: #ffffff; --border: #dce2e8; --accent: #0095f6;
-    --success: #00ba69; --text: #1c1e21; --muted: #65676b; --radius: 16px;
-    --warning: #f59e0b;
-  }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" />
+  <title>NUTRI TRACK</title>
   
-  body { background: var(--bg); margin:0; padding:10px; display:flex; justify-content:center; color: var(--text); font-family: -apple-system, system-ui, sans-serif; }
-  .container { max-width: 600px; width: 100%; background: var(--card); border-radius: var(--radius); padding:20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-top: 10px; padding-bottom: 40px; }
-  
-  header { text-align: center; margin-bottom: 25px; }
-  h1 { margin: 0; font-size: 26px; letter-spacing: -1px; font-weight: 800; text-transform: uppercase; }
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0095f6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="https://api.dicebear.com/7.x/initials/svg?seed=N&backgroundColor=000000&fontSize=70&fontWeight=700">
 
-  .meal-box { background: #f7f8fa; padding: 20px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 20px; }
-  .meal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-  .meal-title { font-weight: 800; font-size: 14px; color: var(--text); text-transform: uppercase; letter-spacing: 1px; }
-  
-  .supp-pill { background: #fff; border: 1px dashed var(--warning); color: var(--warning); padding: 8px; border-radius: 10px; font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 15px; }
+  <style>
+    :root {
+      --bg: #f0f2f5; --card: #ffffff; --border: #dce2e8; --accent: #0095f6;
+      --success: #00ba69; --text: #1c1e21; --muted: #65676b; --radius: 16px;
+      --warning: #f59e0b;
+    }
+    
+    body { background: var(--bg); margin:0; padding:10px; display:flex; justify-content:center; color: var(--text); font-family: -apple-system, system-ui, sans-serif; }
+    .container { max-width: 600px; width: 100%; background: var(--card); border-radius: var(--radius); padding:20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-top: 10px; padding-bottom: 40px; }
+    
+    header { text-align: center; margin-bottom: 25px; }
+    h1 { margin: 0; font-size: 26px; letter-spacing: -1px; font-weight: 800; text-transform: uppercase; }
 
-  .food-list { display: flex; flex-direction: column; gap: 10px; }
-  
-  /* AJUSTE PARA EVITAR SALTOS DE LÍNEA */
-  .food-item { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
-    font-size: 14px; 
-    padding: 5px 0; 
-    border-bottom: 1px solid rgba(0,0,0,0.03);
-    gap: 10px;
-  }
-  .food-item span:first-child {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    flex-shrink: 1;
-  }
-  .food-item span:last-child {
-    white-space: nowrap;
-    flex-shrink: 0;
-    font-variant-numeric: tabular-nums;
-  }
-  
-  select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: #fff; font-size: 13px; font-weight: 600; color: var(--text); outline: none; margin-top: 5px; cursor: pointer; }
-  .select-label { font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; margin-top: 10px; display: block; }
+    .meal-box { background: #f7f8fa; padding: 20px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 20px; }
+    .meal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+    .meal-title { font-weight: 800; font-size: 14px; color: var(--text); text-transform: uppercase; letter-spacing: 1px; }
+    
+    .supp-pill { background: #fff; border: 1px dashed var(--warning); color: var(--warning); padding: 8px; border-radius: 10px; font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 15px; }
 
-  .total-bar { position: sticky; bottom: 0; background: #1c1e21; color: #fff; padding: 15px; border-radius: 12px; display: flex; justify-content: space-around; margin-top: 20px; box-shadow: 0 -4px 10px rgba(0,0,0,0.1); }
-  .total-item { text-align: center; }
-  .total-item span { font-size: 10px; text-transform: uppercase; display: block; opacity: 0.7; }
-  .total-item strong { font-size: 18px; color: var(--accent); }
+    .food-list { display: flex; flex-direction: column; gap: 10px; }
+    
+    /* AJUSTE PARA EVITAR SALTOS DE LÍNEA */
+    .food-item { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center;
+      font-size: 14px; 
+      padding: 5px 0; 
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+      gap: 10px;
+    }
+    .food-item span:first-child {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-shrink: 1;
+    }
+    .food-item span:last-child {
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-variant-numeric: tabular-nums;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+    
+    select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: #fff; font-size: 13px; font-weight: 600; color: var(--text); outline: none; margin-top: 5px; cursor: pointer; }
+    .select-label { font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; margin-top: 10px; display: block; }
 
-  .extra-section { border-top: 1px dashed var(--border); margin-top: 15px; padding-top: 10px; }
-  .extra-badge { font-size: 10px; background: #e0e7ff; color: #4338ca; padding: 2px 6px; border-radius: 4px; font-weight: 800; margin-left: 5px; }
-</style>
+    .total-bar { position: sticky; bottom: 0; background: #1c1e21; color: #fff; padding: 15px; border-radius: 12px; display: flex; justify-content: space-around; margin-top: 20px; box-shadow: 0 -4px 10px rgba(0,0,0,0.1); }
+    .total-item { text-align: center; }
+    .total-item span { font-size: 10px; text-transform: uppercase; display: block; opacity: 0.7; }
+    .total-item strong { font-size: 18px; color: var(--accent); }
+
+    .extra-section { border-top: 1px dashed var(--border); margin-top: 15px; padding-top: 10px; }
+    .extra-badge { font-size: 10px; background: #e0e7ff; color: #4338ca; padding: 2px 6px; border-radius: 4px; font-weight: 800; margin-left: 5px; }
+  </style>
 </head>
 <body>
 
@@ -175,7 +184,7 @@
 
   <div class="meal-box" style="border-left: 4px solid var(--success);">
     <div class="food-list">
-      <div class="food-item"><span>AOVE Diario (30 ml)</span><span>270 kcal | 0g Prot | 30g Gras</span></div>
+      <div class="food-item" style="border:none;"><span>AOVE Diario (30 ml)</span><span>270 kcal | 0g Prot | 30g Gras</span></div>
     </div>
   </div>
 
@@ -194,6 +203,13 @@
 </div>
 
 <script>
+// Registro del Service Worker para PWA
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js');
+  });
+}
+
 const ids = ['comidaHidrato', 'comidaProteina', 'comidaExtra', 'cenaHidrato', 'cenaProteina', 'cenaExtra'];
 
 function saveAndCalc() {
