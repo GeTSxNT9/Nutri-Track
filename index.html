@@ -24,7 +24,28 @@
   .supp-pill { background: #fff; border: 1px dashed var(--warning); color: var(--warning); padding: 8px; border-radius: 10px; font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 15px; }
 
   .food-list { display: flex; flex-direction: column; gap: 10px; }
-  .food-item { display: flex; justify-content: space-between; font-size: 14px; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.03); }
+  
+  /* AJUSTE PARA EVITAR SALTOS DE LÍNEA */
+  .food-item { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    font-size: 14px; 
+    padding: 5px 0; 
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+    gap: 10px;
+  }
+  .food-item span:first-child {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
+  }
+  .food-item span:last-child {
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
   
   select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: #fff; font-size: 13px; font-weight: 600; color: var(--text); outline: none; margin-top: 5px; cursor: pointer; }
   .select-label { font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; margin-top: 10px; display: block; }
