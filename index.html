@@ -25,26 +25,35 @@
 
   .food-list { display: flex; flex-direction: column; gap: 10px; }
   
-  /* AJUSTE PARA EVITAR SALTOS DE LÍNEA */
+  /* AJUSTE DEFINITIVO PARA UNA SOLA LÍNEA */
   .food-item { 
     display: flex; 
     justify-content: space-between; 
     align-items: center;
-    font-size: 14px; 
-    padding: 5px 0; 
+    padding: 6px 0; 
     border-bottom: 1px solid rgba(0,0,0,0.03);
-    gap: 10px;
+    gap: 8px;
+    width: 100%;
+    box-sizing: border-box;
   }
+
+  /* El nombre del alimento: si no cabe, pone "..." */
   .food-item span:first-child {
+    font-size: 14px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    flex-shrink: 1;
+    flex: 1; /* Ocupa el espacio sobrante */
   }
+
+  /* Los macros: un poco más pequeños y siempre fijos a la derecha */
   .food-item span:last-child {
+    font-size: 12.5px; /* Un pelín más pequeño para que entre todo */
     white-space: nowrap;
-    flex-shrink: 0;
-    font-variant-numeric: tabular-nums;
+    flex-shrink: 0; /* No permite que se encoja ni salte */
+    color: var(--muted);
+    font-weight: 600;
+    text-align: right;
   }
   
   select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: #fff; font-size: 13px; font-weight: 600; color: var(--text); outline: none; margin-top: 5px; cursor: pointer; }
@@ -173,9 +182,9 @@
     </div>
   </div>
 
-  <div class="meal-box" style="border-left: 4px solid var(--success);">
+  <div class="meal-box" style="border-left: 4px solid var(--success); padding: 12px 20px;">
     <div class="food-list">
-      <div class="food-item"><span>AOVE Diario (30 ml)</span><span>270 kcal | 0g Prot | 30g Gras</span></div>
+      <div class="food-item" style="border:none; padding:0;"><span>AOVE Diario (30 ml)</span><span>270 kcal | 0g Prot | 30g Gras</span></div>
     </div>
   </div>
 
