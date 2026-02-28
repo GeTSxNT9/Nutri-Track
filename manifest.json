@@ -1,0 +1,16 @@
+{
+  "name": "Nutri Track",
+  "short_name": "NutriTrack",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#f0f2f5",
+  "theme_color": "#0095f6",
+  "icons": [
+    {
+      "src": "https://api.dicebear.com/7.x/initials/svg?seed=N&backgroundColor=000000&fontSize=70&fontWeight=700",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
