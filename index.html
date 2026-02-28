@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" />
+<title>NUTRI TRACK</title>
+<style>
+  :root {
+    --bg: #f0f2f5; --card: #ffffff; --border: #dce2e8; --accent: #0095f6;
+    --success: #00ba69; --text: #1c1e21; --muted: #65676b; --radius: 16px;
+    --warning: #f59e0b;
+  }
+  
+  body { background: var(--bg); margin:0; padding:10px; display:flex; justify-content:center; color: var(--text); font-family: -apple-system, system-ui, sans-serif; }
+  .container { max-width: 600px; width: 100%; background: var(--card); border-radius: var(--radius); padding:20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-top: 10px; padding-bottom: 40px; }
+  
+  header { text-align: center; margin-bottom: 25px; }
+  h1 { margin: 0; font-size: 26px; letter-spacing: -1px; font-weight: 800; text-transform: uppercase; }
+
+  .meal-box { background: #f7f8fa; padding: 20px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 20px; }
+  .meal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+  .meal-title { font-weight: 800; font-size: 14px; color: var(--text); text-transform: uppercase; letter-spacing: 1px; }
+  
+  .supp-pill { background: #fff; border: 1px dashed var(--warning); color: var(--warning); padding: 8px; border-radius: 10px; font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 15px; }
+
+  .food-list { display: flex; flex-direction: column; gap: 10px; }
+  .food-item { display: flex; justify-content: space-between; font-size: 14px; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.03); }
+  
+  select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: #fff; font-size: 13px; font-weight: 600; color: var(--text); outline: none; margin-top: 5px; cursor: pointer; }
+  .select-label { font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; margin-top: 10px; display: block; }
+
+  .total-bar { position: sticky; bottom: 0; background: #1c1e21; color: #fff; padding: 15px; border-radius: 12px; display: flex; justify-content: space-around; margin-top: 20px; box-shadow: 0 -4px 10px rgba(0,0,0,0.1); }
+  .total-item { text-align: center; }
+  .total-item span { font-size: 10px; text-transform: uppercase; display: block; opacity: 0.7; }
+  .total-item strong { font-size: 18px; color: var(--accent); }
+
+  .extra-section { border-top: 1px dashed var(--border); margin-top: 15px; padding-top: 10px; }
+  .extra-badge { font-size: 10px; background: #e0e7ff; color: #4338ca; padding: 2px 6px; border-radius: 4px; font-weight: 800; margin-left: 5px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>NUTRI TRACK</h1>
+  </header>
+
+  <div class="meal-box">
+    <div class="meal-header"><span class="meal-title">Desayuno</span></div>
+    <div class="supp-pill">1 Multivitamínico</div>
+    <div class="food-list">
+      <div class="food-item"><span>Pan (80 g)</span><span>208 kcal | 7g Prot | 1g Gras</span></div>
+      <div class="food-item"><span>Huevos (2 ud)</span><span>180 kcal | 12g Prot | 14g Gras</span></div>
+      <div class="food-item"><span>Claras (150 ml)</span><span>63 kcal | 16g Prot | 0g Gras</span></div>
+      <div class="food-item"><span>Yogur Proteico</span><span>70 kcal | 10g Prot | 0g Gras</span></div>
+      <div class="food-item"><span>Pechuga de Pavo / Pollo (92%)</span><span>30 kcal | 6g Prot | 1g Gras</span></div>
+      <div class="food-item"><span>1/2 Aguacate</span><span>160 kcal | 2g Prot | 15g Gras</span></div>
+    </div>
+  </div>
+
+  <div class="meal-box" style="border-left: 4px solid var(--accent);">
+    <div class="meal-header"><span class="meal-title">Post-Entreno</span></div>
+    <div class="food-list">
+      <div class="food-item"><span>Leche Proteica (250 ml)</span><span>113 kcal | 15g Prot | 2g Gras</span></div>
+      <div class="food-item"><span>Proteína en Polvo (32 g)</span><span>125 kcal | 25g Prot | 2g Gras</span></div>
+      <div class="food-item"><span>Creatina (10 g)</span><span>-</span></div>
+    </div>
+  </div>
+
+  <div class="meal-box">
+    <div class="meal-header"><span class="meal-title">Comida</span></div>
+    <div class="supp-pill" style="border-color: var(--accent); color: var(--accent);">1 Omega-3</div>
+    
+    <span class="select-label">Hidrato Principal</span>
+    <select id="comidaHidrato" onchange="saveAndCalc()">
+      <option value="450,9,1">Arroz (125 g) - 450 kcal | 9g Prot | 1g Gras</option>
+      <option value="462,15,2">Pasta (125 g) - 462 kcal | 15g Prot | 2g Gras</option>
+      <option value="462,17,7">Quinoa (125 g) - 462 kcal | 17g Prot | 7g Gras</option>
+      <option value="240,6,0">Patata (300 g) - 240 kcal | 6g Prot | 0g Gras</option>
+      <option value="437,27,2">Legumbre (125 g) - 437 kcal | 27g Prot | 2g Gras</option>
+      <option value="462,16,2">Cuscús (125 g) - 462 kcal | 16g Prot | 2g Gras</option>
+    </select>
+
+    <span class="select-label">Proteína Principal</span>
+    <select id="comidaProteina" onchange="saveAndCalc()">
+      <option value="300,62,5">Pollo (250 g) - 300 kcal | 62g Prot | 5g Gras</option>
+      <option value="375,55,15">Ternera Magra (250 g) - 375 kcal | 55g Prot | 15g Gras</option>
+      <option value="400,55,18">Cerdo Magro (250 g) - 400 kcal | 55g Prot | 18g Gras</option>
+      <option value="200,45,2">Merluza (250 g) - 200 kcal | 45g Prot | 2g Gras</option>
+      <option value="215,45,2">Bacalao (250 g) - 215 kcal | 45g Prot | 2g Gras</option>
+      <option value="180,40,2">Atún Natural (2 latas) - 180 kcal | 40g Prot | 2g Gras</option>
+      <option value="280,25,20">Huevos (4 ud) - 280 kcal | 25g Prot | 20g Gras</option>
+    </select>
+
+    <div class="extra-section">
+      <span class="select-label">Añadir Extra <span class="extra-badge">OPCIONAL</span></span>
+      <select id="comidaExtra" onchange="saveAndCalc()">
+        <option value="0,0,0">Ninguno</option>
+        <option value="70,6,5">1 Huevo (+ 70 kcal | 6g Prot | 5g Gras)</option>
+        <option value="140,12,10">2 Huevos (+ 140 kcal | 12g Prot | 10g Gras)</option>
+        <option value="42,11,0">Claras (100 ml) (+ 42 kcal | 11g Prot | 0g Gras)</option>
+        <option value="84,22,0">Claras (200 ml) (+ 84 kcal | 22g Prot | 0g Gras)</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="meal-box">
+    <div class="meal-header"><span class="meal-title">Merienda</span></div>
+    <div class="food-list">
+      <div class="food-item"><span>Pan (80 g)</span><span>208 kcal | 7g Prot | 1g Gras</span></div>
+      <div class="food-item"><span>Yogur Proteico</span><span>70 kcal | 10g Prot | 0g Gras</span></div>
+      <div class="food-item"><span>Crema Cacahuete (20 g)</span><span>120 kcal | 5g Prot | 10g Gras</span></div>
+      <div class="food-item"><span>Pechuga de Pavo / Pollo (92%)</span><span>30 kcal | 6g Prot | 1g Gras</span></div>
+      <div class="food-item"><span>1/2 Aguacate</span><span>160 kcal | 2g Prot | 15g Gras</span></div>
+    </div>
+  </div>
+
+  <div class="meal-box">
+    <div class="meal-header"><span class="meal-title">Cena</span></div>
+    <div class="supp-pill" style="border-color: #ef4444; color: #ef4444;">1 Omega-3</div>
+
+    <span class="select-label">Hidrato Principal</span>
+    <select id="cenaHidrato" onchange="saveAndCalc()">
+      <option value="270,5,1">Arroz (75 g) - 270 kcal | 5g Prot | 1g Gras</option>
+      <option value="277,9,1">Pasta (75 g) - 277 kcal | 9g Prot | 1g Gras</option>
+      <option value="277,10,4">Quinoa (75 g) - 277 kcal | 10g Prot | 4g Gras</option>
+      <option value="140,3,0">Patata (175 g) - 140 kcal | 3g Prot | 0g Gras</option>
+      <option value="262,16,1">Legumbre (75 g) - 262 kcal | 16g Prot | 1g Gras</option>
+      <option value="277,9,1">Cuscús (75 g) - 277 kcal | 9g Prot | 1g Gras</option>
+    </select>
+
+    <span class="select-label">Proteína Principal</span>
+    <select id="cenaProteina" onchange="saveAndCalc()">
+      <option value="300,62,5">Pollo (250 g) - 300 kcal | 62g Prot | 5g Gras</option>
+      <option value="375,55,15">Ternera Magra (250 g) - 375 kcal | 55g Prot | 15g Gras</option>
+      <option value="400,55,18">Cerdo Magro (250 g) - 400 kcal | 55g Prot | 18g Gras</option>
+      <option value="200,45,2">Merluza (250 g) - 200 kcal | 45g Prot | 2g Gras</option>
+      <option value="215,45,2">Bacalao (250 g) - 215 kcal | 45g Prot | 2g Gras</option>
+      <option value="180,40,2">Atún Natural (2 latas) - 180 kcal | 40g Prot | 2g Gras</option>
+      <option value="280,25,20">Huevos (4 ud) - 280 kcal | 25g Prot | 20g Gras</option>
+    </select>
+
+    <div class="extra-section">
+      <span class="select-label">Añadir Extra <span class="extra-badge">OPCIONAL</span></span>
+      <select id="cenaExtra" onchange="saveAndCalc()">
+        <option value="0,0,0">Ninguno</option>
+        <option value="70,6,5">1 Huevo (+ 70 kcal | 6g Prot | 5g Gras)</option>
+        <option value="140,12,10">2 Huevos (+ 140 kcal | 12g Prot | 10g Gras)</option>
+        <option value="42,11,0">Claras (100 ml) (+ 42 kcal | 11g Prot | 0g Gras)</option>
+        <option value="84,22,0">Claras (200 ml) (+ 84 kcal | 22g Prot | 0g Gras)</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="meal-box" style="border-left: 4px solid var(--success);">
+    <div class="food-list">
+      <div class="food-item"><span>AOVE Diario (30 ml)</span><span>270 kcal | 0g Prot | 30g Gras</span></div>
+    </div>
+  </div>
+
+  <div class="meal-box" style="border: 1px solid var(--warning); background: #fff; padding: 10px 15px; margin-bottom: 10px;">
+    <div class="meal-header" style="border:none; margin:0; padding-bottom: 0;">
+      <span class="meal-title" style="color: var(--warning); font-size: 12px;">23:00 - Magnesio</span>
+      <span style="font-weight: 800; color: var(--warning); font-size: 12px;">1 Cápsula</span>
+    </div>
+  </div>
+
+  <div class="total-bar">
+    <div class="total-item"><span>Total kcal</span><strong id="totalKcal">0</strong></div>
+    <div class="total-item"><span>Total Proteína</span><strong id="totalProt">0 g</strong></div>
+    <div class="total-item"><span>Total Grasa</span><strong id="totalFat" style="color: #f59e0b;">0 g</strong></div>
+  </div>
+</div>
+
+<script>
+const ids = ['comidaHidrato', 'comidaProteina', 'comidaExtra', 'cenaHidrato', 'cenaProteina', 'cenaExtra'];
+
+function saveAndCalc() {
+  const data = {
+    date: new Date().toLocaleDateString(),
+    selections: {}
+  };
+
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    data.selections[id] = el.selectedIndex;
+  });
+
+  localStorage.setItem('nutri_track_kcal_v2', JSON.stringify(data));
+  calcular();
+}
+
+function loadSelections() {
+  const saved = localStorage.getItem('nutri_track_kcal_v2');
+  const today = new Date().toLocaleDateString();
+
+  if (saved) {
+    const data = JSON.parse(saved);
+    if (data.date === today) {
+      ids.forEach(id => {
+        if (data.selections[id] !== undefined) {
+          document.getElementById(id).selectedIndex = data.selections[id];
+        }
+      });
+    } else {
+      localStorage.removeItem('nutri_track_kcal_v2');
+    }
+  }
+  calcular();
+}
+
+function calcular() {
+  let kcalBase = 1907; 
+  let protBase = 129;
+  let fatBase = 94;
+
+  let kcalExtra = 0;
+  let protExtra = 0;
+  let fatExtra = 0;
+
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if(el) {
+      const val = el.value.split(',');
+      kcalExtra += parseInt(val[0]);
+      protExtra += parseInt(val[1]);
+      fatExtra += parseInt(val[2] || 0);
+    }
+  });
+
+  document.getElementById('totalKcal').textContent = kcalBase + kcalExtra;
+  document.getElementById('totalProt').textContent = (protBase + protExtra) + ' g';
+  document.getElementById('totalFat').textContent = (fatBase + fatExtra) + ' g';
+}
+
+window.onload = loadSelections;
+</script>
+
+</body>
+</html>
