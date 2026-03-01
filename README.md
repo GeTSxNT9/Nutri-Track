@@ -1,9 +1,9 @@
 # NUTRI-TRACK
-> REGISTRO DIARIO DE MACRONUTRIENTES Y CALORÍAS
+> DAILY MACRONUTRIENT AND CALORIE TRACKING SYSTEM
 
 ---
 
-[![ACCEDER](https://img.shields.io/badge/ABRIR_APLICACIÓN-0095f6?style=for-the-badge&logo=googlechrome&logoColor=white)](https://getsxnt9.github.io/Nutri-Track/)
+[![ACCESS](https://img.shields.io/badge/OPEN_APPLICATION-0095f6?style=for-the-badge&logo=googlechrome&logoColor=white)](https://getsxnt9.github.io/Nutri-Track/)
 
 ---
-*Herramienta personal para el control de ingesta y objetivos nutricionales.*
+*Personal tool for nutritional intake control and dietary goals.*
