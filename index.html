@@ -32,7 +32,6 @@
 
     .food-list { display: flex; flex-direction: column; gap: 10px; }
     
-    /* AJUSTE PARA EVITAR SALTOS DE LÍNEA */
     .food-item { 
       display: flex; 
       justify-content: space-between; 
@@ -77,14 +76,13 @@
 
   <div class="meal-box">
     <div class="meal-header"><span class="meal-title">Desayuno</span></div>
-    <div class="supp-pill">1 Multivitamínico</div>
+    <div class="supp-pill">1 Vitamínico + 2 Cápsulas Omega-3</div>
     <div class="food-list">
       <div class="food-item"><span>Pan (80 g)</span><span>208 kcal | 7g Prot | 1g Gras</span></div>
       <div class="food-item"><span>Huevos (2 ud)</span><span>180 kcal | 12g Prot | 14g Gras</span></div>
       <div class="food-item"><span>Claras (150 ml)</span><span>63 kcal | 16g Prot | 0g Gras</span></div>
       <div class="food-item"><span>Yogur Proteico</span><span>70 kcal | 10g Prot | 0g Gras</span></div>
       <div class="food-item"><span>Pechuga de Pavo / Pollo (92%)</span><span>30 kcal | 6g Prot | 1g Gras</span></div>
-      <div class="food-item"><span>1/2 Aguacate</span><span>160 kcal | 2g Prot | 15g Gras</span></div>
     </div>
   </div>
 
@@ -99,7 +97,6 @@
 
   <div class="meal-box">
     <div class="meal-header"><span class="meal-title">Comida</span></div>
-    <div class="supp-pill" style="border-color: var(--accent); color: var(--accent);">1 Omega-3</div>
     
     <span class="select-label">Hidrato Principal</span>
     <select id="comidaHidrato" onchange="saveAndCalc()">
@@ -137,17 +134,16 @@
   <div class="meal-box">
     <div class="meal-header"><span class="meal-title">Merienda</span></div>
     <div class="food-list">
-      <div class="food-item"><span>Pan (80 g)</span><span>208 kcal | 7g Prot | 1g Gras</span></div>
+      <div class="food-item"><span>Tostas Semillas (4 ud / 48g)</span><span>203 kcal | 8g Prot | 6g Gras</span></div>
+      <div class="food-item"><span>Aguacate Entero</span><span>320 kcal | 4g Prot | 30g Gras</span></div>
       <div class="food-item"><span>Yogur Proteico</span><span>70 kcal | 10g Prot | 0g Gras</span></div>
-      <div class="food-item"><span>Crema Cacahuete (20 g)</span><span>120 kcal | 5g Prot | 10g Gras</span></div>
       <div class="food-item"><span>Pechuga de Pavo / Pollo (92%)</span><span>30 kcal | 6g Prot | 1g Gras</span></div>
-      <div class="food-item"><span>1/2 Aguacate</span><span>160 kcal | 2g Prot | 15g Gras</span></div>
+      <div class="food-item"><span style="color:var(--success); font-weight:700;">Rúcula, Módena y Sésamo</span><span>Extra</span></div>
     </div>
   </div>
 
   <div class="meal-box">
     <div class="meal-header"><span class="meal-title">Cena</span></div>
-    <div class="supp-pill" style="border-color: #ef4444; color: #ef4444;">1 Omega-3</div>
 
     <span class="select-label">Hidrato Principal</span>
     <select id="cenaHidrato" onchange="saveAndCalc()">
@@ -203,13 +199,6 @@
 </div>
 
 <script>
-// Registro del Service Worker para PWA
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js');
-  });
-}
-
 const ids = ['comidaHidrato', 'comidaProteina', 'comidaExtra', 'cenaHidrato', 'cenaProteina', 'cenaExtra'];
 
 function saveAndCalc() {
@@ -247,9 +236,10 @@ function loadSelections() {
 }
 
 function calcular() {
-  let kcalBase = 1907; 
-  let protBase = 129;
-  let fatBase = 94;
+  // Ajuste tras eliminar Crema de Cacahuete (-120 kcal | -5g Prot | -10g Gras):
+  let kcalBase = 1782; 
+  let protBase = 125;
+  let fatBase = 89;
 
   let kcalExtra = 0;
   let protExtra = 0;
